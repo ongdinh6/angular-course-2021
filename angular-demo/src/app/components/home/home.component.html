@@ -1,0 +1,40 @@
+<!--
+  HOME COMPONENT HTML TEMPLATE
+ -->
+<div class="container">
+  <h2>Hello, world : ngIf!</h2>
+  <!--
+    this code was be apply event binding in angular
+    (click) = name of event, with button we have onClick in javascript
+    onEditClick() = this is a function be declared in HomeComponent class
+   -->
+  <button (click)="onEditClick()">Make text editable!</button>
+
+  <!--
+    *ngIf
+    check if canEdit is true, this is div below was be display, else noEdit elements was be display
+    Note: noEdit is a element of this HTML template, and does not declared in HomeComponent class,
+    so why we can use this property ???
+    Ans: See code below.
+  -->
+  <div *ngIf="canEdit; else noEdit">
+    <p>You can edit the following paragraph.</p>
+  </div>
+
+  <!--
+    <ng-template> tag was be clared here to fix noEdit element, using #noEdit like id in javascript,
+    (default this element will be display, because canEdit property is false)
+    this elements will be replace when we click on "Make it editable!" button.
+   -->
+  <ng-template #noEdit>
+    <p>The following paragraph is read only. Try click the button!</p>
+  </ng-template>
+</div>
+
+<!--
+  Property Binding
+  [contentEditable] = property of tag <p> (search this on internet: w3school)
+  canEdit is value declared at HomeComponent class
+  {{message}}, we are using Interpolation principle of Angular
+ -->
+<p [contentEditable]="canEdit">{{message}}</p>
